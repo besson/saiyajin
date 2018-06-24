@@ -1,10 +1,14 @@
 from flask import Flask
 from flask_restful import reqparse, Resource, Api
+from flask_cors import CORS
+
 from . import config
 import requests
 import json
 
 app = Flask(__name__)
+CORS(app)
+
 api = Api(app)
 
 parser = reqparse.RequestParser()
@@ -18,7 +22,7 @@ class Search(Resource):
 
         query = {
             "_source": ["reviews.text", "city", "name"],
-            "size": 10,
+            "size": 20,
             "query": {
                 "multi_match": {
                     "query": query_string['q'],
@@ -26,7 +30,9 @@ class Search(Resource):
                 }
             },
             "highlight" : {
-                "fields" : { "reviews.text" :  {"type" : "plain"} }
+                "fields" : { "reviews.text" :  {} },
+                "pre_tags" : ["<kbd>"],
+                "post_tags" : ["</kbd>"]
             }
         }
 
@@ -35,10 +41,11 @@ class Search(Resource):
         places = []
 
         for hit in data['hits']['hits']:
-            #place = hit['_source']['city']
-            #place = hit['_source']['name']
-            #place = hit['_source']['reviews']
-            place = hit['highlight']['reviews.text']
+            place = {}
+            place['name'] = hit['_source']['name']
+            place['city'] = hit['_source']['city']
+            place['reviews'] = hit['highlight']['reviews.text']
+
             places.append(place)
 
         return places
