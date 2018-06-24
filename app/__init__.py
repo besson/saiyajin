@@ -22,11 +22,11 @@ class Search(Resource):
 
         query = {
             "_source": ["reviews.text", "city", "name"],
-            "size": 20,
+            "size": 30,
             "query": {
                 "multi_match": {
                     "query": query_string['q'],
-                    "fields": ["reviews.text", "city"]
+                    "fields": ["reviews.text", "city.text"]
                 }
             },
             "highlight" : {
@@ -38,6 +38,9 @@ class Search(Resource):
 
         data = requests.post(url, headers={'content-type': 'application/json'},
         data=json.dumps(query)).json()
+
+        result = {}
+        result['total'] = data['hits']['total']
         places = []
 
         for hit in data['hits']['hits']:
@@ -48,6 +51,8 @@ class Search(Resource):
 
             places.append(place)
 
-        return places
+        result['places'] = places
+
+        return result
 
 api.add_resource(Search, '/search')
