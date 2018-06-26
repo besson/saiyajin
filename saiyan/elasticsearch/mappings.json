@@ -1,0 +1,571 @@
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "en_enhanced": {
+          "type": "custom",
+          "char_filter": [
+            "html_strip"
+          ],
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "stop",
+            "en_stemmer"
+          ]
+        }
+      },
+      "filter": {
+        "en_stemmer": {
+          "type": "stemmer",
+          "name": "english"
+        }
+      }
+    }
+  },
+  "mappings": {
+    "place": {
+      "properties": {
+        "address": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "attributes": {
+          "properties": {
+            "AcceptsInsurance": {
+              "type": "boolean"
+            },
+            "AgesAllowed": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "Alcohol": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "Ambience": {
+              "properties": {
+                "casual": {
+                  "type": "boolean"
+                },
+                "classy": {
+                  "type": "boolean"
+                },
+                "divey": {
+                  "type": "boolean"
+                },
+                "hipster": {
+                  "type": "boolean"
+                },
+                "intimate": {
+                  "type": "boolean"
+                },
+                "romantic": {
+                  "type": "boolean"
+                },
+                "touristy": {
+                  "type": "boolean"
+                },
+                "trendy": {
+                  "type": "boolean"
+                },
+                "upscale": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "BYOB": {
+              "type": "boolean"
+            },
+            "BYOBCorkage": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "BestNights": {
+              "properties": {
+                "friday": {
+                  "type": "boolean"
+                },
+                "monday": {
+                  "type": "boolean"
+                },
+                "saturday": {
+                  "type": "boolean"
+                },
+                "sunday": {
+                  "type": "boolean"
+                },
+                "thursday": {
+                  "type": "boolean"
+                },
+                "tuesday": {
+                  "type": "boolean"
+                },
+                "wednesday": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "BikeParking": {
+              "type": "boolean"
+            },
+            "BusinessAcceptsBitcoin": {
+              "type": "boolean"
+            },
+            "BusinessAcceptsCreditCards": {
+              "type": "boolean"
+            },
+            "BusinessParking": {
+              "properties": {
+                "garage": {
+                  "type": "boolean"
+                },
+                "lot": {
+                  "type": "boolean"
+                },
+                "street": {
+                  "type": "boolean"
+                },
+                "valet": {
+                  "type": "boolean"
+                },
+                "validated": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "ByAppointmentOnly": {
+              "type": "boolean"
+            },
+            "Caters": {
+              "type": "boolean"
+            },
+            "CoatCheck": {
+              "type": "boolean"
+            },
+            "Corkage": {
+              "type": "boolean"
+            },
+            "DietaryRestrictions": {
+              "properties": {
+                "dairy-free": {
+                  "type": "boolean"
+                },
+                "gluten-free": {
+                  "type": "boolean"
+                },
+                "halal": {
+                  "type": "boolean"
+                },
+                "kosher": {
+                  "type": "boolean"
+                },
+                "soy-free": {
+                  "type": "boolean"
+                },
+                "vegan": {
+                  "type": "boolean"
+                },
+                "vegetarian": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "DogsAllowed": {
+              "type": "boolean"
+            },
+            "DriveThru": {
+              "type": "boolean"
+            },
+            "GoodForDancing": {
+              "type": "boolean"
+            },
+            "GoodForKids": {
+              "type": "boolean"
+            },
+            "GoodForMeal": {
+              "properties": {
+                "breakfast": {
+                  "type": "boolean"
+                },
+                "brunch": {
+                  "type": "boolean"
+                },
+                "dessert": {
+                  "type": "boolean"
+                },
+                "dinner": {
+                  "type": "boolean"
+                },
+                "latenight": {
+                  "type": "boolean"
+                },
+                "lunch": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "HairSpecializesIn": {
+              "properties": {
+                "africanamerican": {
+                  "type": "boolean"
+                },
+                "asian": {
+                  "type": "boolean"
+                },
+                "coloring": {
+                  "type": "boolean"
+                },
+                "curly": {
+                  "type": "boolean"
+                },
+                "extensions": {
+                  "type": "boolean"
+                },
+                "kids": {
+                  "type": "boolean"
+                },
+                "perms": {
+                  "type": "boolean"
+                },
+                "straightperms": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "HappyHour": {
+              "type": "boolean"
+            },
+            "HasTV": {
+              "type": "boolean"
+            },
+            "Music": {
+              "properties": {
+                "background_music": {
+                  "type": "boolean"
+                },
+                "dj": {
+                  "type": "boolean"
+                },
+                "jukebox": {
+                  "type": "boolean"
+                },
+                "karaoke": {
+                  "type": "boolean"
+                },
+                "live": {
+                  "type": "boolean"
+                },
+                "no_music": {
+                  "type": "boolean"
+                },
+                "video": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "NoiseLevel": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "Open24Hours": {
+              "type": "boolean"
+            },
+            "OutdoorSeating": {
+              "type": "boolean"
+            },
+            "RestaurantsAttire": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "RestaurantsCounterService": {
+              "type": "boolean"
+            },
+            "RestaurantsDelivery": {
+              "type": "boolean"
+            },
+            "RestaurantsGoodForGroups": {
+              "type": "boolean"
+            },
+            "RestaurantsPriceRange2": {
+              "type": "long"
+            },
+            "RestaurantsReservations": {
+              "type": "boolean"
+            },
+            "RestaurantsTableService": {
+              "type": "boolean"
+            },
+            "RestaurantsTakeOut": {
+              "type": "boolean"
+            },
+            "Smoking": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "WheelchairAccessible": {
+              "type": "boolean"
+            },
+            "WiFi": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            }
+          }
+        },
+        "business_id": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "categories": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "city": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            },
+            "search": {
+              "type": "text",
+              "analyzer": "en_enhanced"
+            }
+          }
+        },
+        "hours": {
+          "properties": {
+            "Friday": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "Monday": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "Saturday": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "Sunday": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "Thursday": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "Tuesday": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "Wednesday": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            }
+          }
+        },
+        "is_open": {
+          "type": "long"
+        },
+        "latitude": {
+          "type": "float"
+        },
+        "longitude": {
+          "type": "float"
+        },
+        "name": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            },
+            "search": {
+              "type": "text",
+              "analyzer": "en_enhanced"
+            }
+          }
+        },
+        "neighborhood": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "postal_code": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "review_count": {
+          "type": "long"
+        },
+        "reviews": {
+          "properties": {
+            "business_id": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "cool": {
+              "type": "long"
+            },
+            "date": {
+              "type": "date"
+            },
+            "funny": {
+              "type": "long"
+            },
+            "review_id": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "stars": {
+              "type": "long"
+            },
+            "text": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                },
+                "search": {
+                  "type": "text",
+                  "analyzer": "en_enhanced"
+                }
+              }
+            },
+            "useful": {
+              "type": "long"
+            },
+            "user_id": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            }
+          }
+        },
+        "stars": {
+          "type": "float"
+        },
+        "state": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        }
+      }
+    }
+  }
+}

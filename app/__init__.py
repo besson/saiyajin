@@ -26,11 +26,11 @@ class Search(Resource):
             "query": {
                 "multi_match": {
                     "query": query_string['q'],
-                    "fields": ["reviews.text", "city.text"]
+                    "fields": ["reviews.text.search", "city"]
                 }
             },
             "highlight" : {
-                "fields" : { "reviews.text" :  {} },
+                "fields" : { "reviews.text.search" :  {} },
                 "pre_tags" : ["<kbd>"],
                 "post_tags" : ["</kbd>"]
             }
@@ -47,7 +47,7 @@ class Search(Resource):
             place = {}
             place['name'] = hit['_source']['name']
             place['city'] = hit['_source']['city']
-            place['reviews'] = hit['highlight']['reviews.text']
+            place['reviews'] = hit['highlight']['reviews.text.search']
 
             places.append(place)
 

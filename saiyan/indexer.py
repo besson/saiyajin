@@ -10,6 +10,7 @@ class Indexer:
 
     def index(self):
         self.__es.indices.delete(self.__index, ignore=[400, 404])
+        self.__es.indices.create(self.__index, body=json.load(open('elasticsearch/mappings.json')))
 
         def bulk_place_docs():
             with open('dataset/business.json') as data:
