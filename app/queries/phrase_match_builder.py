@@ -26,7 +26,10 @@ class PhraseMatchBuilder:
                         },
                         {
                             "match_phrase": {
-                                "reviews.text.search": self.__query
+                                "reviews.text.search": {
+                                    "query": self.__query,
+                                    "slop": 2
+                                }
                             }
                         }
                     ]
