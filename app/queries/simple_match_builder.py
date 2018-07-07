@@ -14,9 +14,9 @@ class SimpleMatchBuilder:
                             "fields": ["reviews.text.search", "city"]
                         }
                     },
-                    "highlight" : {
-                        "fields" : { "reviews.text.search" :  {} },
-                        "pre_tags" : ["<kbd>"],
-                        "post_tags" : ["</kbd>"]
+                    "highlight": {
+                        "fields": {"reviews.text.search":  {}},
+                        "pre_tags": ["<kbd>"],
+                        "post_tags": ["</kbd>"]
                     }
                 }

@@ -3,6 +3,7 @@ from flask_restful import reqparse, Resource, Api
 from flask_cors import CORS
 
 from app.queries.simple_match_builder import SimpleMatchBuilder
+from app.queries.phrase_match_builder import PhraseMatchBuilder
 
 from . import config
 import requests
@@ -22,8 +23,28 @@ class Search(Resource):
         query_string = parser.parse_args()
 
         response = {}
-        results = [self._get_results(SimpleMatchBuilder(30, query_string['q']).build(), 'simple_match')]
-        response['results'] = results
+        results = [
+            self._get_results(SimpleMatchBuilder(30, query_string['q']).build(), 'simple_match'),
+            self._get_results(PhraseMatchBuilder(30, query_string['q']).build(), 'phrase_match')
+        ]
+
+        totals = []
+        max_total = 0
+        query_total = len(results)
+
+        for result in results:
+            if result['total'] > max_total:
+                max_total = result['total']
+            totals.append({'type': result['type'], 'total': result['total']})
+
+        places = []
+        for i in range(max_total):
+            for j in range(query_total):
+                if i < len(results[j]['places']):
+                    places.append(results[j]['places'][i])
+
+        response['totals'] = totals
+        response['places'] = places
 
         return response
 
@@ -38,7 +59,8 @@ class Search(Resource):
         for hit in data['hits']['hits']:
             place = {'name': hit['_source']['name'],
                      'city': hit['_source']['city'],
-                     'reviews': hit['highlight']['reviews.text.search']}
+                     'reviews': hit['highlight']['reviews.text.search'],
+                     'type': query_type}
 
             places.append(place)
 

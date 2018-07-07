@@ -8,7 +8,7 @@
 
 <div style="margin-top: 40px;">
     <p><b>Total of matches</b></p>
-    <ul ng-repeat="result in response.results">
+    <ul ng-repeat="result in response.totals">
         <li>
            {{ result.type }}: {{ result.total }}
         </li>
@@ -24,21 +24,14 @@
         <th style="min-width: 80px;">Reviews</th>
     </tr>
     </thead>
-    <tbody ng-repeat="result in response.results">
-            <tr ng-repeat="place in result.places">
-                <td>{{ result.type }}</td>
-                <td>{{ place.name }}</td>
-                <td>{{ place.city }}</td>
-                <td ng-repeat="review in place.reviews">
-                    <span ng-bind-html="review | unsafe"></span>
-                </td>
-            </tr>
-    <!--<tr ng-repeat="result in response.results">-->
-        <!--<td>{{ result.name }}</td>-->
-        <!--<td>{{ result.city }}</td>-->
-        <!--<td ng-repeat="review in result.reviews">-->
-          <!--<span ng-bind-html="review | unsafe"></span>-->
-        <!--</td>-->
-    <!--</tr>-->
+    <tbody>
+        <tr ng-repeat="place in response.places">
+            <td>{{ place.type }}</td>
+            <td>{{ place.name }}</td>
+            <td>{{ place.city }}</td>
+            <td ng-repeat="review in place.reviews">
+                <span ng-bind-html="review | unsafe"></span>
+            </td>
+        </tr>
     </tbody>
 </table>
