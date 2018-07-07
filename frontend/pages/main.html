@@ -4,34 +4,31 @@
     </span>
 </div>
 
-<div class="clearfix"></div>
-
-<div style="margin-top: 40px;">
-    <p><b>Total of matches</b></p>
-    <ul ng-repeat="result in response.totals">
-        <li>
-           {{ result.type }}: {{ result.total }}
-        </li>
-    </ul>
-</div>
-
-<table id="places_list" class="table table-striped table-condensed" style="margin-top: 20px;">
+<table id="places_list" class="table table-hover">
     <thead>
     <tr>
-        <th style="min-width: 80px;">Query type</th>
-        <th style="min-width: 80px;">Name</th>
-        <th style="min-width: 80px;">City</th>
-        <th style="min-width: 80px;">Reviews</th>
+        <th scope="col">Query type</th>
+        <th scope="col">Name</th>
+        <th scope="col">City</th>
+        <th scope="col">Reviews</th>
     </tr>
     </thead>
     <tbody>
         <tr ng-repeat="place in response.places">
-            <td>{{ place.type }}</td>
-            <td>{{ place.name }}</td>
-            <td>{{ place.city }}</td>
-            <td ng-repeat="review in place.reviews">
+            <td scope="row">{{ place.type }}</td>
+            <td scope="row">{{ place.name }}</td>
+            <td scope="row">{{ place.city }}</td>
+            <td scope="row" ng-repeat="review in place.reviews">
                 <span ng-bind-html="review | unsafe"></span>
             </td>
         </tr>
     </tbody>
 </table>
+
+<div>
+    <b>Total of matches</b>
+    <ul class="list-group" ng-repeat="result in response.totals">
+        <li class="list-group-item">{{ result.type }}: {{ result.total }}</li>
+    </ul>
+</div>
+

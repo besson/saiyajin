@@ -36,7 +36,7 @@ class PhraseMatchBuilder:
                 "fields": {
                     "reviews.text.search": {}
                 },
-                "pre_tags": ["<kbd>"],
-                "post_tags": ["</kbd>"]
+                "pre_tags": ["<span class=\"badge badge-warning\">"],
+                "post_tags": ["</span>"]
             }
         }

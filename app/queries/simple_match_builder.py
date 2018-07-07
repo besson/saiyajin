@@ -16,7 +16,7 @@ class SimpleMatchBuilder:
                     },
                     "highlight": {
                         "fields": {"reviews.text.search":  {}},
-                        "pre_tags": ["<kbd>"],
-                        "post_tags": ["</kbd>"]
+                        "pre_tags": ["<span class=\"badge badge-dark\">"],
+                        "post_tags": ["</span>"]
                     }
                 }
