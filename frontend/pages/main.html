@@ -7,25 +7,38 @@
 <div class="clearfix"></div>
 
 <div style="margin-top: 40px;">
-  <span style="min-width: 80px;">Total:</span>
-  <span style="min-width: 80px;">{{results.total}}</span>
+    <p><b>Total of matches</b></p>
+    <ul ng-repeat="result in response.results">
+        <li>
+           {{ result.type }}: {{ result.total }}
+        </li>
+    </ul>
 </div>
 
 <table id="places_list" class="table table-striped table-condensed" style="margin-top: 20px;">
     <thead>
     <tr>
+        <th style="min-width: 80px;">Query type</th>
         <th style="min-width: 80px;">Name</th>
         <th style="min-width: 80px;">City</th>
         <th style="min-width: 80px;">Reviews</th>
     </tr>
     </thead>
-    <tbody>
-    <tr ng-repeat="result in results.places">
-        <td>{{ result.name }}</td>
-        <td>{{ result.city }}</td>
-        <td ng-repeat="review in result.reviews">
-          <span ng-bind-html="review | unsafe"></span>
-        </td>
-    </tr>
+    <tbody ng-repeat="result in response.results">
+            <tr ng-repeat="place in result.places">
+                <td>{{ result.type }}</td>
+                <td>{{ place.name }}</td>
+                <td>{{ place.city }}</td>
+                <td ng-repeat="review in place.reviews">
+                    <span ng-bind-html="review | unsafe"></span>
+                </td>
+            </tr>
+    <!--<tr ng-repeat="result in response.results">-->
+        <!--<td>{{ result.name }}</td>-->
+        <!--<td>{{ result.city }}</td>-->
+        <!--<td ng-repeat="review in result.reviews">-->
+          <!--<span ng-bind-html="review | unsafe"></span>-->
+        <!--</td>-->
+    <!--</tr>-->
     </tbody>
 </table>

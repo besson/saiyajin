@@ -28,7 +28,7 @@ myApp.controller(
         $scope.search = function() {
             q = $scope.searchString;
             if (q.length > 1) {
-                $scope.results = Search.query({q: q});
+                $scope.response = Search.query({q: q});
             }
         };
     }
