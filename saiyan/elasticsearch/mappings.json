@@ -553,6 +553,50 @@
             }
           }
         },
+        "photos": {
+          "properties": {
+            "business_id": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "photo_id": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "label": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "caption": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                },
+                "search": {
+                  "type": "text",
+                  "analyzer": "en_enhanced"
+                }
+              }
+            }
+          }
+        },
         "stars": {
           "type": "float"
         },
