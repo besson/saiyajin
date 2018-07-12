@@ -62,11 +62,18 @@ class Search(Resource):
                      'reviews': hit['highlight']['reviews.text.search'],
                      'type': query_type}
 
+            if len(hit['_source']['photos']) > 0:
+               place['main_photo_url'] = self._photo_url(hit['_source']['photos'][0]['photo_id'])
+               place['photos'] = hit['_source']['photos']
+
             places.append(place)
 
         result['places'] = places
 
         return result
+
+    def _photo_url(self, photo_id):
+        return "https://s3-media1.fl.yelpcdn.com/bphoto/%s/300s.jpg" % photo_id
 
 
 api.add_resource(Search, '/search')

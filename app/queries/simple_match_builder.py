@@ -6,7 +6,7 @@ class SimpleMatchBuilder:
 
     def build(self):
         return {
-                    "_source": ["reviews.text", "city", "name"],
+                    "_source": ["reviews.text", "city", "name", "photos"],
                     "size": self.__size,
                     "query": {
                         "multi_match": {

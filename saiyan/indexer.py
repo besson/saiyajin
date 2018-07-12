@@ -3,6 +3,8 @@ import elasticsearch.helpers
 from elasticsearch import Elasticsearch
 import sys
 
+REQUEST_TIMEOUT = 300
+
 
 class Indexer:
 
@@ -65,21 +67,22 @@ class Indexer:
                            }
 
                     print(doc)
+
                     yield doc
 
         if mode == 'all':
             self.__es.indices.delete(self.__index, ignore=[400, 404])
             self.__es.indices.create(self.__index, body=json.load(open('elasticsearch/mappings.json')))
 
-            elasticsearch.helpers.bulk(es, bulk_place_docs())
-            elasticsearch.helpers.bulk(es, bulk_review_docs())
-            elasticsearch.helpers.bulk(es, bulk_photo_docs())
+            elasticsearch.helpers.bulk(es, bulk_place_docs(), request_time=REQUEST_TIMEOUT)
+            elasticsearch.helpers.bulk(es, bulk_review_docs(), request_time=REQUEST_TIMEOUT)
+            elasticsearch.helpers.bulk(es, bulk_photo_docs(), request_time=REQUEST_TIMEOUT)
         elif mode == 'place':
-            elasticsearch.helpers.bulk(es, bulk_place_docs())
+            elasticsearch.helpers.bulk(es, bulk_place_docs(), request_time=REQUEST_TIMEOUT)
         elif mode == 'review':
-            elasticsearch.helpers.bulk(es, bulk_review_docs())
+            elasticsearch.helpers.bulk(es, bulk_review_docs(), request_timeout=REQUEST_TIMEOUT)
         elif mode == 'photo':
-            elasticsearch.helpers.bulk(es, bulk_photo_docs())
+            elasticsearch.helpers.bulk(es, bulk_photo_docs(), request_timeout=REQUEST_TIMEOUT)
 
 
 if __name__ == '__main__':

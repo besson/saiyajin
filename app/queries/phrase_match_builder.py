@@ -9,7 +9,8 @@ class PhraseMatchBuilder:
             "_source": [
                 "reviews.text",
                 "city",
-                "name"
+                "name",
+                "photos"
             ],
             "size": self.__size,
             "query": {
