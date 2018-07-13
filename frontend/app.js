@@ -14,6 +14,10 @@ myApp.config(function($routeProvider) {
         templateUrl: 'pages/main.html',
         controller: 'mainController'
     })
+    .when('/visualize', {
+        templateUrl: 'pages/visual.html',
+        controller: 'visualController'
+    })
 });
 
 myApp.filter('unsafe', function($sce) {
@@ -33,3 +37,16 @@ myApp.controller(
         };
     }
 );
+
+myApp.controller(
+    'visualController',
+    function ($scope, Search) {
+        $scope.search = function() {
+            q = $scope.searchString;
+            if (q.length > 1) {
+                $scope.response = Search.query({q: q});
+            }
+        };
+    }
+);
+

@@ -8,19 +8,13 @@
     <thead>
     <tr>
         <th scope="col">Query type</th>
-        <th scope="col">Name</th>
-        <th scope="col">City</th>
-        <th scope="col">Reviews</th>
+        <th scope="col">Photo</th>
     </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="place in response.places">
+        <tr ng-repeat="place in response.places  | filter:{main_photo_url: ''}">
             <td scope="row">{{ place.type }}</td>
-            <td scope="row">{{ place.name }}</td>
-            <td scope="row">{{ place.city }}</td>
-            <td scope="row" ng-repeat="review in place.reviews track by $index">
-                <span ng-bind-html="review | unsafe"></span>
-            </td>
+            <td><img src="{{ place.main_photo_url}}" class="img-fluid rounded"></td>
         </tr>
     </tbody>
 </table>
