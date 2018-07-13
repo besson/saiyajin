@@ -9,9 +9,16 @@ class SimpleMatchBuilder:
                     "_source": ["reviews.text", "city", "name", "photos"],
                     "size": self.__size,
                     "query": {
-                        "multi_match": {
-                            "query": self.__query,
-                            "fields": ["reviews.text.search", "city"]
+                        "bool": {
+                            "should": [
+                                {
+                                    "multi_match": {
+                                        "query": self.__query,
+                                        "fields": ["reviews.text.search^2", "city", "photos.caption.search"],
+                                        "type": "cross_fields"
+                                    }
+                                }
+                            ]
                         }
                     },
                     "highlight": {

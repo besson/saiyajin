@@ -20,9 +20,11 @@ class PhraseMatchBuilder:
                             "multi_match": {
                                 "query": self.__query,
                                 "fields": [
-                                    "reviews.text.search",
-                                    "city"
-                                ]
+                                    "reviews.text.search^2",
+                                    "city",
+                                    "photos.caption.search"
+                                ],
+                                "type": "cross_fields"
                             }
                         },
                         {
