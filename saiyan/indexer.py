@@ -30,7 +30,7 @@ class Indexer:
                         yield doc
 
         def bulk_review_docs():
-            with open('dataset/review.json') as data:
+            with open('dataset/review-short.json') as data:
                 for line in data:
                     _doc = json.loads(line)
 
