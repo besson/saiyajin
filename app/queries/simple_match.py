@@ -1,4 +1,4 @@
-class SimpleMatchBuilder:
+class SimpleMatch:
 
     def __init__(self, size, query):
         self.__size = size

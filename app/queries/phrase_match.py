@@ -1,4 +1,4 @@
-class PhraseMatchBuilder:
+class PhraseMatch:
 
     def __init__(self, size, query):
         self.__size = size
