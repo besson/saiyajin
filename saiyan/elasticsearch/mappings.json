@@ -14,12 +14,56 @@
             "stop",
             "en_stemmer"
           ]
+        },
+        "english_expander": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "english_possessive_stemmer",
+            "lowercase",
+            "english_stop",
+            "english_stemmer",
+            "shingle"
+          ]
+        },
+        "english_fingerprint": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "english_possessive_stemmer",
+            "lowercase",
+            "english_stop",
+            "english_stemmer",
+            "fingerprint"
+          ]
+        }
+      },
+      "normalizer": {
+        "lowercase": {
+          "type": "custom",
+          "filter": ["lowercase"]
         }
       },
       "filter": {
         "en_stemmer": {
           "type": "stemmer",
           "name": "english"
+        },
+        "english_stemmer": {
+          "type": "stemmer",
+          "name": "english"
+        },
+        "english_stop": {
+          "type":       "stop",
+          "stopwords":  "_english_"
+        },
+        "english_possessive_stemmer": {
+          "type":       "stemmer",
+          "language":   "possessive_english"
+        },
+        "shingle": {
+           "type": "shingle",
+           "max_shingle_size": 4
         }
       }
     }
@@ -368,6 +412,10 @@
             "keyword": {
               "type": "keyword",
               "ignore_above": 256
+            },
+            "search_keyword": {
+              "type": "text",
+              "analyzer": "english_fingerprint"
             }
           }
         },
@@ -376,6 +424,7 @@
           "fields": {
             "keyword": {
               "type": "keyword",
+              "normalizer": "lowercase",
               "ignore_above": 256
             },
             "search": {
