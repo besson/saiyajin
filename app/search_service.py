@@ -2,6 +2,7 @@ from app.queries.simple_match import SimpleMatch
 from app.queries.simple_match_best import SimpleMatchBest
 from app.queries.simple_match_cross import SimpleMatchCross
 from app.queries.phrase_match import PhraseMatch
+from app.queries.simple_agg import SimpleAgg
 from . import config
 import requests
 import json
@@ -28,6 +29,9 @@ class SearchService:
 
         self._build_response(response, results)
         return response
+
+    def extract(self, text):
+        return {'categories': self._get_aggs(SimpleAgg(text).build())}
 
     def _build_response(self, response, results):
         totals = []
@@ -73,6 +77,20 @@ class SearchService:
 
 
         result['places'] = places
+
+        return result
+
+    def _get_aggs(self, es_query):
+        url = config.es_base_url['categories'] + '/_search'
+        data = requests.post(url, headers={'content-type': 'application/json'},
+                             data=json.dumps(es_query)).json()
+
+        aggs = data['aggregations']['categ_agg']['buckets']
+        result = []
+
+        if len(aggs) > 0:
+            for agg in aggs:
+                result.append(agg['key'])
 
         return result
 

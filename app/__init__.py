@@ -29,6 +29,14 @@ class ExplorerController(Resource):
 
         return SearchService().explore(query_string['q'])
 
+class ExtractController(Resource):
+
+    def get(self):
+        parser.add_argument('q')
+        query_string = parser.parse_args()
+
+        return SearchService().extract(query_string['q'])
 
 api.add_resource(SearchController, '/search')
 api.add_resource(ExplorerController, '/explore')
+api.add_resource(ExtractController, '/extract')
