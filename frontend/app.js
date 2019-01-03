@@ -12,7 +12,13 @@ services
     return $resource('http://localhost:5000/explore', {q: '@q'}, {
         query: { method: 'GET', isArray: false}
     });
-});
+})
+
+.factory('Extractor', function($resource) {
+    return $resource('http://localhost:5000/extract', {q: '@q'}, {
+        query: { method: 'GET', isArray: false}
+    });
+})
 
 myApp.config(function($routeProvider) {
     $routeProvider
@@ -24,6 +30,11 @@ myApp.config(function($routeProvider) {
         templateUrl: 'pages/visual.html',
         controller: 'visualController'
     })
+    .when('/extract', {
+        templateUrl: 'pages/extraction.html',
+        controller: 'extractionController'
+    })
+
 });
 
 myApp.filter('unsafe', function($sce) {
@@ -56,3 +67,14 @@ myApp.controller(
     }
 );
 
+myApp.controller(
+    'extractionController',
+    function ($scope, Extractor) {
+        $scope.extract = function() {
+            q = $scope.searchString;
+            if (q.length > 1) {
+                $scope.response = Extractor.query({q: q});
+            }
+        };
+    }
+);

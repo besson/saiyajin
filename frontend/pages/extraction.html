@@ -1,0 +1,14 @@
+<div style="margin-top: 20px;">
+    <div class="col-md-6 col-md-offset-3">
+        <textarea rows="20" cols="100" ng-model="searchString"  ng-change="extract()"></textarea>
+    </div>
+</div>
+
+<div class="mt-3 col-md-12 col-md-offset-3">
+    <ul class="list-inline mb-1">
+        <li class="btn btn-success list-inline-item" ng-repeat="result in response.categories">
+            {{ result }}
+        </li>
+    </ul>
+</div>
+

@@ -14,7 +14,7 @@ class SimpleMatchBest:
                                 {
                                     "multi_match": {
                                         "query": self.__query,
-                                        "fields": ["reviews.text.search", "city", "name", "photos.caption.search^2"],
+                                        "fields": ["reviews.text.search", "city", "name", "photos.caption.search^4"],
                                         "type": "best_fields",
                                         "minimum_should_match": "50%"
                                     }
