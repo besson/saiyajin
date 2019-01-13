@@ -9,6 +9,13 @@ Elasticsearch schemas.
 * [Yelp free dataset](https://www.yelp.com/dataset)
 
 ## Indexing
+First run virtualevn:
+
+1. ```cd saiyan```
+2. ```virtualenv venv```
+3. ```$pip3 install -r requirements.txt```
+
+Then run indexer:
 * everything: ```$python indexer.py``` or ```$python indexer.py all```
 * Only places: ```$python indexer.py places```
 * Only photos: ```$python indexer.py photos```
