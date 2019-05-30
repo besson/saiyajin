@@ -11,7 +11,7 @@ class SimpleAgg:
                     "multi_match": {
                         "query": self.__query,
                         "analyzer": "english_expander",
-                        "fields": ["name.search_keyword"]
+                        "fields": ["name.keyword"]
                     }
                 },
                 "aggs": {

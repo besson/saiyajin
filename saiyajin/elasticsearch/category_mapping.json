@@ -1,15 +1,14 @@
 {
   "settings": {
     "analysis": {
+
       "analyzer": {
         "english_expander": {
           "type": "custom",
           "tokenizer": "standard",
           "filter": [
-            "english_possessive_stemmer",
             "lowercase",
-            "english_stop",
-            "english_stemmer",
+            "asciifolding",
             "shingle"
           ]
         },
@@ -21,8 +20,15 @@
             "lowercase",
             "english_stop",
             "english_stemmer",
+
             "fingerprint"
           ]
+        }
+      },
+      "normalizer": {
+        "keyword_normalizer": {
+          "type": "custom",
+          "filter": ["lowercase", "asciifolding"]
         }
       },
       "filter": {
@@ -57,6 +63,7 @@
           "fields": {
             "keyword": {
               "type": "keyword",
+              "normalizer": "keyword_normalizer",
               "ignore_above": 256
             },
             "search_keyword": {

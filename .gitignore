@@ -106,7 +106,7 @@ venv.bak/
 *.tar
 
 dataset/*
-saiyan/dataset/*
+saiyajin/dataset/*
 
 .DS_Store
 
