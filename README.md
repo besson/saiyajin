@@ -1,7 +1,5 @@
-# saiyan
-Project to study search features in general (full text relevance, NLP and LTR).
-It will be extended to be a generic tool but so far it depends on some particular
-Elasticsearch schemas.
+# Saiyajin
+Project to study information retrieval and e-commerce search topics like Relevance tuning, NLP, semantic search, LTR, ....
 
 ## Dependencies
 * Elasticsearch (> 6.0)
