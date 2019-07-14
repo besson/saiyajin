@@ -9,13 +9,13 @@ REQUEST_TIMEOUT = 300
 class Indexer:
 
     def __init__(self, es):
-        self.__index = 'saiyan'
+        self.__index = 'saiyajin'
         self.__es = es
 
     def index(self, mode = 'all'):
 
         def bulk_place_docs():
-            with open('dataset/business.json') as data:
+            with open('dataset/business-short.json') as data:
                 for line in data:
                         _doc = json.loads(line)
                         _doc['reviews'] = []
